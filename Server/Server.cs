@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Server
@@ -94,20 +93,20 @@ namespace Server
 
         void ProcessClientHello(BinaryReader reader, IPEndPoint ip)
         {
-           
+
             int sameIps = clientList.Where(el => el.IP.Address.Equals(ip.Address)).Count();
             if (sameIps < 4)
             {
                 Client client = GetOrCreateClient(ip);
                 if (client != null)
                     client.ProcessClientHello(ip);
-               
+
             }
             else
             {
                 Console.WriteLine("Detected DDOS. Clients from one IP: {0}", sameIps);
             }
-            
+
         }
 
 
@@ -125,9 +124,9 @@ namespace Server
             {
                 while (true)
                 {
-               
+
                     var data = paintData.Take();
-               
+
                     foreach (var client in clientDictionary)
                     {
                         if (!client.Value.Dead)
@@ -171,7 +170,7 @@ namespace Server
 
                 if (type != MessageType.ClientHello && type != MessageType.Disconnected)
                     ProcessMessage(msg);
-        
+
             }
             catch (Exception ex)
             {
@@ -195,10 +194,10 @@ namespace Server
                     Stream = memoryStream,
                     Type = type,
                 };
-            
-                if (type == MessageType.ClientHello || type == MessageType.Disconnected )
+
+                if (type == MessageType.ClientHello || type == MessageType.Disconnected)
                     ProcessMessage(msg);
-   
+
             }
             catch (Exception ex)
             {
@@ -237,13 +236,13 @@ namespace Server
                         int id = reader.ReadInt32();
                         break;
                     }
-           
+
                 case MessageType.ClientHello:
                     {
                         ProcessClientHello(message.Reader, message.Source);
                         break;
                     }
-              
+
                 case MessageType.Disconnected:
                     {
                         int clientId = reader.ReadInt32();
@@ -261,13 +260,13 @@ namespace Server
                         data[3] = reader.ReadByte(); //color
                         data[4] = reader.ReadByte(); //color
                         data[5] = reader.ReadByte(); //color
-   
+
                         paintData.Add(new KeyValuePair<byte, byte[]>(data[1], data));
 
                         Console.WriteLine("Started drawing from: " + data[1]);
                         break;
                     }
-                 case MessageType.ClientUpdateInProgress:
+                case MessageType.ClientUpdateInProgress:
                     {
                         byte[] data = new byte[6];
                         data[0] = (byte)MessageType.ClientUpdateInProgress;

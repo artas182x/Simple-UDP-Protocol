@@ -3,7 +3,7 @@
 SUDPP is simple protocol based on UDP. It's very simple and has low latency. With this protocol it is possible to send packets and automatically confirm fact of delivery. I can recommend it for creating simple online games or other real time programs. It was was created for my university laboratory task.
 
 **Features:**
-1. Simple - only 3 small files, easy integration.
+1. Simple - only 2 small files, easy integration.
 2. Stable.
 3. Fast - based on UDP, with as small amounts of headers as possible.
 4. It's possible to confirm packets from client side (Acknowledgement packets).

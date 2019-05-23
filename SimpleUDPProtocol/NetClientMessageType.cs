@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SimpleUDPProtocol
+﻿namespace SimpleUDPProtocol
 {
     /// <summary>
     /// Types of messages. Reliable needs confirmation from our target. Unreliable does not need it. Ackonwledgment is packet responsible for confirmation

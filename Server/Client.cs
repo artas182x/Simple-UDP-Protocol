@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Server
 {
@@ -37,7 +33,7 @@ namespace Server
                 ClientConnectionStep = ConnectionStep.Hello;
 
             IP = ip;
-       
+
             //using (var cc = new ConsoleCopy(Settings.LogFile))
             //{
             Console.WriteLine("Client Hello! IP: {0}", ip);

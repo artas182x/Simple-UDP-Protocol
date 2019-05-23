@@ -28,7 +28,7 @@ namespace SimpleUDPProtocol
 
         Socket socket;
         Timer timer;
-        
+
         List<ReliableMessage> reliableMessages = new List<ReliableMessage>();
 
         byte[] receiveBuffer = new byte[1024 * 64];

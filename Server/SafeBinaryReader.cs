@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace SimpleUDPProtocol
 {
@@ -21,7 +16,7 @@ namespace SimpleUDPProtocol
             return num;
         }
 
-        
+
         public static float ValidateFloat(float num)
         {
             if (float.IsInfinity(num) || float.IsNaN(num))

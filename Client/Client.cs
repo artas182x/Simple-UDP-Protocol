@@ -1,12 +1,9 @@
 ﻿using SimpleUDPProtocol;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -48,7 +45,7 @@ namespace Client
 
         public Client(IPEndPoint serverIP)
         {
-            if (connectionTask!=null)
+            if (connectionTask != null)
                 connectionTask.Dispose();
 
             netClientConnection = new NetClient();
@@ -62,7 +59,7 @@ namespace Client
             this.serverIPConnection = serverIP;
 
             udpClients = new Dictionary<byte, PaintData>();
-            
+
         }
 
         public void SendClientHello()
@@ -140,7 +137,7 @@ namespace Client
                 writer.Write((byte)MessageType.Disconnected);
                 writer.Write(id);
 
-                Console.WriteLine("Sending Disconnected to: {0}", serverIPConnection);         
+                Console.WriteLine("Sending Disconnected to: {0}", serverIPConnection);
 
                 byte[] finalBuffer = memoryStream.ToArray();
                 netClient.Send(finalBuffer, serverIPConnection, NetClientMessageType.Unreliable);
@@ -161,18 +158,18 @@ namespace Client
             try
             {
                 if (connectionTask != null && !connectionTask.IsCanceled && !connectionTask.IsFaulted && !connectionTask.IsCompleted)
-                connectionTask.Dispose();
+                    connectionTask.Dispose();
             }
             catch (Exception)
             {
             }
 
             try
-            {      
+            {
                 if (mainTask != null && !mainTask.IsCanceled && !mainTask.IsFaulted && !mainTask.IsCompleted)
                     mainTask.Dispose();
             }
-            catch (Exception )
+            catch (Exception)
             {
             }
         }
@@ -187,7 +184,7 @@ namespace Client
             {
                 id = nextPingID,
                 time = DateTime.Now,
-            });       
+            });
         }
 
         void SendPing(int id)
@@ -223,7 +220,7 @@ namespace Client
                         }));
                     }
 
-                   
+
                 }
             }
         }
@@ -251,7 +248,7 @@ namespace Client
                     Type = type,
                 };
 
-                
+
                 ProcessMessage(msg);
 
             }
@@ -284,7 +281,7 @@ namespace Client
                         {
                             form1.Invoke(new Action(() =>
                             {
-                                form1.txtStatus.Text = "connected";           
+                                form1.txtStatus.Text = "connected";
                             }));
                         }
 
@@ -363,12 +360,12 @@ namespace Client
 
                     break;
             }
-       
-       
+
+
 
             message.Reader.Close();
             message.Stream.Close();
         }
-    
-}
+
+    }
 }
